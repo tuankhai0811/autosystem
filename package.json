@@ -1,0 +1,11 @@
+{
+    "name": "IoT-KhoaLuanTotNghiep-HCMUS",
+    "version": "0.0.1",
+    "description": "Automatic System",
+    "dependencies": {
+        "socket.io": "latest",
+        "express": "latest",
+        "jade": "latest"
+    },
+    "author": "khaitdt"
+}
