@@ -18,7 +18,7 @@ var io = require('socket.io').listen(app.listen(port, function(){
 }));
 
 io.sockets.on('connection', function (socket) {
-    //socket.emit('message', { message: 'welcome to the chat' });
+    socket.emit('message', "Welcome to the system");
 	console.log('Has connection');
 	
     socket.on('modelsenddata_1', function (data) {
