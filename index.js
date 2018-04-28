@@ -7,7 +7,7 @@ app.set('views', __dirname + '/template');
 app.set('view engine', "jade");
 app.engine('jade', require('jade').__express);
 app.get("/", function(req, res){
-    res.send("Welcome to System design by Khải Trần with \nport : " + port);
+    res.send("Welcome to System design by Khải Trần with \nport : " + port + " version 0.0.2");
 });
 
 //Socket
@@ -18,6 +18,7 @@ var io = require('socket.io').listen(app.listen(port, function(){
 
 io.sockets.on('connection', function (socket) {
     //socket.emit('message', { message: 'welcome to the chat' });
+	console.log('Has connection', socket.id);
 	
     socket.on('modelsenddata_1', function (data) {
         io.sockets.emit('serversendclient_1', data);
@@ -61,10 +62,12 @@ io.sockets.on('connection', function (socket) {
 	
 	socket.on('clientsenddata_1', function (data) {
         io.sockets.emit('serversendmodel_1', data);
+		console.log('status motor on/off', data");
     });
 	
 	socket.on('clientsenddata_2', function (data) {
         io.sockets.emit('serversendmodel_2', data);
+		console.log('status motor auto', data);
     });
 	
 	socket.on('clientsenddata_3', function (data) {
