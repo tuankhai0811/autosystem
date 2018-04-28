@@ -1,19 +1,13 @@
 var express = require('express');
 var app = express();
-//var port = 10348;
+var server = require('http').createServer(app);
 var port = process.env.PORT;
+var io = require('socket.io').listen(server);
+server.listen(port);
 
-//Template
-app.set('views', __dirname + '/template');
-app.set('view engine', "jade");
-app.engine('jade', require('jade').__express);
 app.get("/", function(req, res){
     res.send("Welcome to System design by Khải Trần with \nport : " + port + " version 0.0.2");
 });
-
-//Socket
-app.use(express.static(__dirname + '/public'));
-var io = require('socket.io').listen(port);
 
 io.sockets.on('connection', function (socket) {
     socket.emit('message', "Welcome to the system");
