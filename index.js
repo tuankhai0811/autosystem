@@ -9,6 +9,8 @@ app.get("/", function(req, res){
     res.send("Welcome to System design by Khải Trần with \nport : " + port + " version 0.0.3");
 });
 
+console.log('Welcome');
+
 io.sockets.on('connection', function (socket) {
     socket.emit('message', "Welcome to the system");
 	console.log('Has connection');
