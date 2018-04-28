@@ -13,9 +13,7 @@ app.get("/", function(req, res){
 
 //Socket
 app.use(express.static(__dirname + '/public'));
-var io = require('socket.io').listen(app.listen(port, function(){
-  //console.log('listening on', port);
-}));
+var io = require('socket.io').listen(port);
 
 io.sockets.on('connection', function (socket) {
     socket.emit('message', "Welcome to the system");
