@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 //var port = 10348;
-var port = 5000 || process.env.PORT;
+var port = process.env.PORT;
 
 //Template
 app.set('views', __dirname + '/template');
