@@ -13,7 +13,7 @@ app.get("/", function(req, res){
 //Socket
 app.use(express.static(__dirname + '/public'));
 var io = require('socket.io').listen(app.listen(port, function(){
-  console.log('listening on', port);
+  //console.log('listening on', port);
 }));
 
 io.sockets.on('connection', function (socket) {
@@ -62,12 +62,12 @@ io.sockets.on('connection', function (socket) {
 	
 	socket.on('clientsenddata_1', function (data) {
         io.sockets.emit('serversendmodel_1', data);
-		console.log('status motor on/off', data");
+		console.log("status motor on/off" + data);
     });
 	
 	socket.on('clientsenddata_2', function (data) {
         io.sockets.emit('serversendmodel_2', data);
-		console.log('status motor auto', data);
+		console.log("status motor auto" + data);
     });
 	
 	socket.on('clientsenddata_3', function (data) {
