@@ -18,7 +18,7 @@ var io = require('socket.io').listen(app.listen(port, function(){
 
 io.sockets.on('connection', function (socket) {
     //socket.emit('message', { message: 'welcome to the chat' });
-	//console.log('Has connection', socket.id);
+	console.log('Has connection');
 	
     socket.on('modelsenddata_1', function (data) {
         io.sockets.emit('serversendclient_1', data);
@@ -62,12 +62,12 @@ io.sockets.on('connection', function (socket) {
 	
 	socket.on('clientsenddata_1', function (data) {
         io.sockets.emit('serversendmodel_1', data);
-		//console.log('status motor on/off', data");
+		console.log('status motor on/off', data");
     });
 	
 	socket.on('clientsenddata_2', function (data) {
         io.sockets.emit('serversendmodel_2', data);
-		//console.log('status motor auto', data);
+		console.log('status motor auto', data);
     });
 	
 	socket.on('clientsenddata_3', function (data) {
