@@ -6,7 +6,7 @@ var io = require('socket.io').listen(server);
 server.listen(port);
 
 app.get("/", function(req, res){
-    res.send("Welcome to System design by Khải Trần with \nport : " + port + " version 0.0.2");
+    res.send("Welcome to System design by Khải Trần with \nport : " + port + " version 0.0.3");
 });
 
 io.sockets.on('connection', function (socket) {
