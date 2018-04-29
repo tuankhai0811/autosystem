@@ -23,7 +23,7 @@ io.sockets.on('connection', function (socket) {
 			flagModelOnline = false;
 			var string = '{"status" : "off"}';
 			var obj = JSON.parse(string);
-			io.sockets.emit('serversendclient_2', JSON.stringify(obj));
+			io.sockets.emit('serversendclient_2', obj);
 		}
 	});
 	
@@ -44,7 +44,7 @@ io.sockets.on('connection', function (socket) {
     });
 	
 	socket.on('modelsenddata_2', function (data) {
-		console.log('Model online' + socket.id);
+		console.log('Model online ' + socket.id);
 		flagModelOnline = true;
 		idModel = socket.id;
         io.sockets.emit('serversendclient_2', data);
