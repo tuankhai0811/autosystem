@@ -21,14 +21,15 @@ io.sockets.on('connection', function (socket) {
 		if (socket.id == idModel){
 			console.log('Model offline');
 			flagModelOnline = false;
-			var obj = new Object();
-			obj.status = "off";
+			var string = '{"status" : "off"}';
+			var obj = JSON.parse(string);
 			io.sockets.emit('serversendclient_2', JSON.stringify(obj));
 		}
 	});
 	
 	socket.on('requestmodelonline', function (data){
-		var obj = new Object();
+		var string = '{"status" : "off"}';
+		var obj = JSON.parse(string);
 		if (flagModelOnline){
 			obj.status = "on";
 		}else{
