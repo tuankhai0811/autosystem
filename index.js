@@ -19,10 +19,21 @@ io.sockets.on('connection', function (socket) {
 	socket.on('disconnect', function (){
 		if (socket.id == idModel){
 			console.log('Model offline');
+			flagModelOnline = false;
 			var obj;
 			obj.status = "off";
 			io.sockets.emit('serversendclient_2', JSON.stringify(obj));
 		}
+	});
+	
+	socket.on('requestmodelonline', function (data){
+		var obj;
+		if (flagModelOnline){
+			obj.status = "on";
+		}else{
+			obj.status = "off";
+		}
+		socket.emit('resultmodelonline', obj);
 	});
 	
     socket.on('modelsenddata_1', function (data) {
@@ -32,6 +43,7 @@ io.sockets.on('connection', function (socket) {
 	
 	socket.on('modelsenddata_2', function (data) {
 		console.log('Model online');
+		flagModelOnline = true;
 		idModel = socket.id;
         io.sockets.emit('serversendclient_2', data);
     });
