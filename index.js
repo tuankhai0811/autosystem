@@ -3,7 +3,12 @@ var app = express();
 var server = require('http').createServer(app);
 var port = process.env.PORT;//process.env.PORT
 var io = require('socket.io').listen(server);
-server.listen(port);
+//server.listen(port);
+io.attach(port, {
+  pingInterval: 5000,
+  pingTimeout: 3000,
+  cookie: false
+});
 
 app.get("/", function(req, res){
     res.send("Welcome to System design by Khải Trần with \nport : " + port + " version 0.0.3");
