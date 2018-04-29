@@ -26,8 +26,8 @@ io.sockets.on('connection', function (socket) {
 	});
 	
     socket.on('modelsenddata_1', function (data) {
-		console.log("temp/hum: " + data);
-        io.sockets.emit('serversendclient_1', data.toString());
+		console.log("temp/hum: " + data.toString());
+        io.sockets.emit('serversendclient_1', data);
     });
 	
 	socket.on('modelsenddata_2', function (data) {
