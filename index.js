@@ -9,16 +9,30 @@ app.get("/", function(req, res){
     res.send("Welcome to System design by Khải Trần with \nport : " + port + " version 0.0.3");
 });
 
+var idModel = "";
+var flagModelOnline = false;
+
 io.sockets.on('connection', function (socket) {
     socket.emit('message', "Welcome to the system");
 	console.log('Has connection');
 	
+	socket.on('disconnect', function (){
+		if (socket.id == idModel){
+			console.log('Model offline');
+			var obj;
+			obj.status = "off";
+			io.sockets.emit('serversendclient_2', JSON.stringify(obj));
+		}
+	});
+	
     socket.on('modelsenddata_1', function (data) {
 		console.log("temp/hum: " + data);
-        io.sockets.emit('serversendclient_1', data);
+        io.sockets.emit('serversendclient_1', data.toString());
     });
 	
 	socket.on('modelsenddata_2', function (data) {
+		console.log('Model online');
+		idModel = socket.id;
         io.sockets.emit('serversendclient_2', data);
     });
 	
@@ -56,12 +70,12 @@ io.sockets.on('connection', function (socket) {
 	
 	socket.on('clientsenddata_1', function (data) {
         io.sockets.emit('serversendmodel_1', data);
-		console.log("status motor on/off" + data);
+		console.log("status motor on/off" + data.toString());
     });
 	
 	socket.on('clientsenddata_2', function (data) {
         io.sockets.emit('serversendmodel_2', data);
-		console.log("status motor auto" + data);
+		console.log("status motor auto" + data.toString());
     });
 	
 	socket.on('clientsenddata_3', function (data) {
