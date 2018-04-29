@@ -17,6 +17,7 @@ io.sockets.on('connection', function (socket) {
 	console.log('Has connection');
 	
 	socket.on('disconnect', function (){
+		console.log('Disconnect ' + socket.id);
 		if (socket.id == idModel){
 			console.log('Model offline');
 			flagModelOnline = false;
@@ -42,7 +43,7 @@ io.sockets.on('connection', function (socket) {
     });
 	
 	socket.on('modelsenddata_2', function (data) {
-		console.log('Model online');
+		console.log('Model online' + socket.id);
 		flagModelOnline = true;
 		idModel = socket.id;
         io.sockets.emit('serversendclient_2', data);
