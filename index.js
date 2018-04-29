@@ -14,6 +14,7 @@ io.sockets.on('connection', function (socket) {
 	console.log('Has connection');
 	
     socket.on('modelsenddata_1', function (data) {
+		console.log("temp/hum: " + data);
         io.sockets.emit('serversendclient_1', data);
     });
 	
