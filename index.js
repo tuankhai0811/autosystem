@@ -16,6 +16,9 @@ app.get("/", function(req, res){
 
 var idModel = "";
 var flagModelOnline = false;
+var flagAuto = false;
+var flagMotor = false;
+var dataStatus;
 
 io.sockets.on('connection', function (socket) {
     socket.emit('message', "Welcome to the system");
@@ -41,6 +44,7 @@ io.sockets.on('connection', function (socket) {
 			obj.status = "off";
 		}
 		socket.emit('resultmodelonline', obj);
+		socket.emit('serversendclient_3', dataStatus);
 	});
 	
     socket.on('modelsenddata_1', function (data) {
@@ -56,6 +60,7 @@ io.sockets.on('connection', function (socket) {
     });
 	
 	socket.on('modelsenddata_3', function (data) {
+		dataStatus = data;
         io.sockets.emit('serversendclient_3', data);
     });
 	
