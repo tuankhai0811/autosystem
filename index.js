@@ -44,7 +44,9 @@ io.sockets.on('connection', function (socket) {
 			obj.status = "off";
 		}
 		socket.emit('resultmodelonline', obj);
-		socket.emit('serversendclient_3', dataStatus);
+		if(dataStatus != null){
+			socket.emit('serversendclient_3', dataStatus);
+		}
 	});
 	
     socket.on('modelsenddata_1', function (data) {
