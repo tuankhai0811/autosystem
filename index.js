@@ -24,6 +24,10 @@ io.sockets.on('connection', function (socket) {
     socket.emit('message', "Welcome to the system");
 	console.log('Has connection');
 	
+	socket.on('message', function (data){
+		io.sockets.emit('message', data);
+	});
+	
 	socket.on('disconnect', function (){
 		console.log('Disconnect ' + socket.id);
 		if (socket.id == idModel){
